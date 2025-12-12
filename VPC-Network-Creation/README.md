@@ -27,11 +27,11 @@ gcloud compute networks create cymbal-test-vpc \
     --subnet-mode=custom \
     --bgp-routing-mode=regional
 
+
 #### 2. Configure the Secure Subnet
 I carved out a specific CIDR block (10.10.10.0/24) for the security testing team. This ensures that resources in this subnet are logically separated from other bank operations.
 
-Bash
-
+```bash
 gcloud compute networks subnets create security-test-subnet \
     --network=cymbal-test-vpc \
     --range=10.10.10.0/24 \
@@ -42,15 +42,5 @@ After provisioning, I verified the architecture to ensure no unauthorized defaul
 
 Listing all networks to confirm isolation:
 
-Bash
-
+```bash
 gcloud compute networks list
-Verifying the specific subnet configuration:
-
-Bash
-
-gcloud compute networks subnets list --network=cymbal-test-vpc
-🔐 Security Key Takeaways
-Isolation: Creating a Custom VPC is safer than the Default VPC because it starts with zero subnets (Least Privilege), preventing accidental exposure of resources to the internet.
-
-Segmentation: By manually creating subnets, we ensure that the IP address plan matches the organization's security governance, preventing IP conflicts in a hybrid environment.
