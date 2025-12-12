@@ -26,7 +26,8 @@ Instead of using the GUI, I used the CLI to ensure repeatable Infrastructure as 
 gcloud compute networks create cymbal-test-vpc \
     --subnet-mode=custom \
     --bgp-routing-mode=regional
-2. Configure the Secure Subnet
+
+#### 2. Configure the Secure Subnet
 I carved out a specific CIDR block (10.10.10.0/24) for the security testing team. This ensures that resources in this subnet are logically separated from other bank operations.
 
 Bash
@@ -35,7 +36,8 @@ gcloud compute networks subnets create security-test-subnet \
     --network=cymbal-test-vpc \
     --range=10.10.10.0/24 \
     --region=us-east1
-3. Network Verification
+
+#### 3. Network Verification
 After provisioning, I verified the architecture to ensure no unauthorized default subnets were created.
 
 Listing all networks to confirm isolation:
